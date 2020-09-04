@@ -19,5 +19,6 @@ export const environment = {
     angularCli: packageJson.devDependencies['@angular/cli'],
     typescript: packageJson.devDependencies['typescript'],
     cypress: packageJson.devDependencies['cypress']
-  }
+  },
+  baseUrl: 'http://sandbox-jason.docker.3ie.fr'
 };

@@ -1,17 +1,17 @@
 <h2>
   Sign in !
 </h2>
-<form action="">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <p>
     <mat-form-field appearance="standard">
-      <input matInput placeholder="Email" type="email">
+      <input matInput formControlName="email" mplaceholder="Email" type="email">
       <mat-icon matSuffix>done</mat-icon>
     </mat-form-field>
   </p>
   
   <p>
     <mat-form-field appearance="legacy">
-      <input matInput placeholder="Password" type="password">
+      <input matInput formControlName="password" placeholder="Password" type="password">
       <mat-icon matSuffix>done</mat-icon>
     </mat-form-field>
   </p>
