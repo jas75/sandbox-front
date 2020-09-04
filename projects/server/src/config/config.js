@@ -10,8 +10,8 @@
 module.exports = {
   dbUser: '',
   dbPass: '',
-  dbName: '',
+  dbName: 'sandbox',
   dbHost: '',
-  mongoUri: 'mongodb://localhost:27017',
+  mongoUri: 'mongodb://localhost:27017/',
   jwtSecret: process.env.JWT_SECRET
 };

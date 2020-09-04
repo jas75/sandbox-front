@@ -7,25 +7,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  //url: string = environment.baseUrl;
-
   constructor(private http: HttpClient) {}
 
   public register(user: any): Promise<any> {
     return this.http
-      .post('/api/user', user)
+      .post<any>('/api/user', user)
       .toPromise()
       .then(
         (el) => {
-          console.log(el);
+          return Promise.resolve(el);
         },
         (err) => {
-          console.log(err);
+          return Promise.reject(err);
         }
       );
-  }
-
-  public test() {
-    return this.http.get('/api/test');
   }
 }

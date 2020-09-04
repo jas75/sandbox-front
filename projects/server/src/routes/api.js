@@ -6,12 +6,6 @@ const authController = require('../controllers/auth-controller');
 // @route   POST /api/user
 // @des     Register/Create a user
 // @access  Public
-router.post(
-  '/user',
-  passport.authenticate('jwt', { session: false }),
-  authController.registerUser
-);
-
-router.get('/test', authController.test);
+router.post('/user', authController.registerUser);
 
 module.exports = router;

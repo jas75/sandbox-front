@@ -5,12 +5,15 @@ const config = require('./src/config/config');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
 
 const CONTEXT = `/${process.env.CONTEXT || 'angular-ngrx-material-starter'}`;
 const PORT = process.env.PORT || 4000;
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(compression());
 app.use(
   CONTEXT,
@@ -37,7 +40,7 @@ app.listen(PORT, () =>
 );
 
 // DB connection
-let mongoUri = config.mongoUri;
+let mongoUri = config.mongoUri + config.dbName;
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
