@@ -22,4 +22,18 @@ export class UserService {
         }
       );
   }
+
+  public login(user: any): Promise<any> {
+    return this.http
+      .post<any>('/api/login', user)
+      .toPromise()
+      .then(
+        (el) => {
+          console.log(el);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
 }

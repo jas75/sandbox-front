@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const logger = require('../utils/logger');
+const tokenGenerator = require('../utils/token');
 
 exports.registerUser = (req, res) => {
   if (!req.body.email || !req.body.password) {
@@ -63,8 +64,7 @@ exports.loginUser = (req, res) => {
         logger.info('Token created for ' + user.email);
         // log successful
         return res.status(200).json({
-          token: tokenGenerator.createToken(user),
-          user: user
+          token: tokenGenerator.createToken(user)
         });
       } else {
         return res.status(400).json({

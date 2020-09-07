@@ -8,6 +8,7 @@ import {
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../../../core/data-access/data/user.service';
 
 @Component({
   selector: 'anms-login',
@@ -21,7 +22,10 @@ export class LoginComponent implements OnInit {
 
   @Output() formType = new EventEmitter<boolean>();
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -32,7 +36,19 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log('wesh');
+    const user = {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value
+    };
+    this.userService
+      .login(user)
+      .then((el) => {
+        // login
+      })
+      .catch((err) => {
+        //this.notifService.error(err.error.msg);
+        console.log(err);
+      });
   }
 
   public createForm(): void {
