@@ -8,4 +8,9 @@ const authController = require('../controllers/auth-controller');
 // @access  Public
 router.post('/user', authController.registerUser);
 
+// @route   POST /api/login
+// @des     Login user
+// @access  Public
+router.post('/login', authController.loginUser);
+
 module.exports = router;
