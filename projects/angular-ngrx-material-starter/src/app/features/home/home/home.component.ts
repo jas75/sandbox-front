@@ -6,7 +6,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  isLoginForm: boolean;
+
   constructor() {}
 
   ngOnInit() {}
+
+  public formType($event): void {
+    this.isLoginForm = $event;
+  }
 }

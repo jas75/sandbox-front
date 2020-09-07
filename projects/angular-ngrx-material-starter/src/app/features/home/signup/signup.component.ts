@@ -1,4 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 import {
   ROUTE_ANIMATIONS_ELEMENTS,
@@ -22,6 +28,8 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private notifService: NotificationService
   ) {}
+
+  @Output() formType = new EventEmitter<boolean>();
 
   ngOnInit() {
     this.createForm();
@@ -55,5 +63,9 @@ export class SignupComponent implements OnInit {
       .catch((err) => {
         this.notifService.error(err.error.msg);
       });
+  }
+
+  public switchForm(): void {
+    this.formType.emit(true);
   }
 }

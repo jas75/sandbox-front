@@ -3,8 +3,9 @@
     <div class="container">
         <div class="jumbotron">
             
-            <anms-signup></anms-signup>
+            <anms-signup *ngIf="!isLoginForm" (formType)="formType($event)"></anms-signup>
 
+            <anms-login *ngIf="isLoginForm" (formType)="formType($event)"></anms-login>
             <!-- <hr class="my-4"> -->
 
         </div>
