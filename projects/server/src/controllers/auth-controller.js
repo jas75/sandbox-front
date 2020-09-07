@@ -63,8 +63,14 @@ exports.loginUser = (req, res) => {
       if (isMatch && !err) {
         logger.info('Token created for ' + user.email);
         // log successful
+
+        let userParsed = user.toObject();
+        delete userParsed['password'];
+        delete userParsed.__v;
+
         return res.status(200).json({
-          token: tokenGenerator.createToken(user)
+          token: tokenGenerator.createToken(user),
+          user: userParsed
         });
       } else {
         return res.status(400).json({

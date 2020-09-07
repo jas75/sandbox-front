@@ -28,11 +28,11 @@ export class UserService {
       .post<any>('/api/login', user)
       .toPromise()
       .then(
-        (el) => {
-          console.log(el);
+        (token) => {
+          return Promise.resolve(token);
         },
         (err) => {
-          console.log(err);
+          return Promise.reject(err);
         }
       );
   }

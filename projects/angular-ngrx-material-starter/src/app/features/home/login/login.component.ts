@@ -6,9 +6,15 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
+import {
+  ROUTE_ANIMATIONS_ELEMENTS,
+  NotificationService,
+  authLogin,
+  LocalStorageService
+} from '../../../core/core.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../core/data-access/data/user.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'anms-login',
@@ -24,7 +30,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private notifService: NotificationService,
+    private store: Store,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit() {
@@ -42,12 +51,12 @@ export class LoginComponent implements OnInit {
     };
     this.userService
       .login(user)
-      .then((el) => {
-        // login
+      .then((tokeneduser) => {
+        this.store.dispatch(authLogin());
+        this.localStorageService.setItem('USER', tokeneduser);
       })
       .catch((err) => {
-        //this.notifService.error(err.error.msg);
-        console.log(err);
+        this.notifService.error(err.error.msg);
       });
   }
 
