@@ -20,5 +20,5 @@ export const environment = {
     typescript: packageJson.devDependencies['typescript'],
     cypress: packageJson.devDependencies['cypress']
   },
-  baseUrl: 'http://sandbox-jason.docker.3ie.fr'
+  baseUrl: ''
 };
