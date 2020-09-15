@@ -33,6 +33,14 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.userService.test().then(
+      (el) => {
+        console.log(el);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   public createForm(): void {

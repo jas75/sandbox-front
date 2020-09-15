@@ -3,7 +3,7 @@ FROM node:10 as node
 
 WORKDIR /sandbox-front
 
-COPY package*.json /sanbox-front/
+COPY package*.json /sandbox-front/
 
 RUN npm install
 
